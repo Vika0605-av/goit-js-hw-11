@@ -1,4 +1,4 @@
-import getImagesByQuery from './js/pixabay-api.js';
+import { getImagesByQuery } from './js/pixabay-api.js';
 import { renderImages, clearGallery, showLoader } from './js/render-functions.js';
 
 import iziToast from "izitoast";
