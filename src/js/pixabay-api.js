@@ -9,19 +9,8 @@ import axios from "axios";
                 image_type: "photo",
                 orientation: "horizontal",
                 safesearch: "true",
-            }
+            },
         });
        return response.data;
     }
-    const images = response.data.hits;
-    renderImages(images);
-
-function renderImages(images) {
-const markup = images
-.map(img => {
-    return `
-  <img src="${img.webformatURL}" alt="${img.tags}" />`;
-})
-  .join(" ");
-  gallery.innerHTML = markup;
-}
+    
