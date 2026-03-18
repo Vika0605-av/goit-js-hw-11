@@ -20,25 +20,25 @@ async function handleSubmit(e) {
      return;
     }
 clearGallery();
-showLoader();
-}
+    showLoader();
 
-try {
-    const images = await getImagesByQuery(query);
-    if (images.length === 0) {
+    try {
+        const images = await getImagesByQuery(query);
+        if (!images || images.length === 0) {
+            iziToast.error({
+                title: 'Error',
+                message: 'Sorry, there are no images matching your search query. Please try again!'
+            });
+            return;
+        }
+        renderImages(images);
+    } catch (error) {
+        console.error('Error fetching images:', error);
         iziToast.error({
             title: 'Error',
-            message: 'Sorry, there are no images matching your search query. Please try again!'
+            message: 'An error occurred while fetching images. Please try again later.'
         });
-        return;
+    } finally {
+        hideLoader();
     }
-    renderImages(images);
-} catch (error) {
-    console.error('Error fetching images:', error);
-    iziToast.error({
-        title: 'Error',
-        message: 'An error occurred while fetching images. Please try again later.'
-    });
-} finally {
-    hideLoader();
 }
